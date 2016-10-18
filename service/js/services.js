@@ -1,0 +1,26 @@
+/**
+ * Created by ldjt on 16/10/18.
+ */
+app.service('httpBaseService',function($http){
+    this.doRequest=function(method,path,params,successFunc,errorFunc){
+        $http({
+            method:'method',
+            url:path,
+            params:params
+        }).success(function(data,status){
+            successFunc(data);
+        }).error(function(data,status,headers,config){
+            errorFunc(data);
+        })
+    }
+});
+app.service('postBaseService',function($http,httpBaseService){
+    this.doPost=function(path,params,successFunc,errorFunc){
+        httpBaseService.doRequest('POST',path,params,successFunc,errorFunc);
+    }
+});
+app.service('getBaseService',function($http,httpBaseService){
+    this.doGet=function(path,params,successFunc,errorFunc){
+        httpBaseService.doRequest('Get',path,params,successFunc,errorFunc);
+    }
+});
