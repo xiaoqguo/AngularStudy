@@ -8,6 +8,13 @@ app.service('textService',function(){
     this.textFunc=function(x){
         return x+10;
     }
+})
+//嵌套了另外一个service
+app.service('nestService1',function(textService){
+    this.getNum=function(x){
+        var y=textService.textFunc(x);
+        return y+100;
+    }
 });
 app.service('requestNewActivitySV',function($http){
     //this.seccess;
@@ -25,7 +32,7 @@ app.service('requestNewActivitySV',function($http){
         }
     }
 });
-app.controller('controller',function($scope,$timeout,textService,requestNewActivitySV,auctionBdiFormIndexSV,auctionBidSV){
+app.controller('controller',function($scope,$timeout,nestService1,requestNewActivitySV,auctionBdiFormIndexSV,auctionBidSV){
     auctionBdiFormIndexSV.initService($scope,auctionBidSV);
     $scope.num=0;
     $scope.x=0;
@@ -36,7 +43,8 @@ app.controller('controller',function($scope,$timeout,textService,requestNewActiv
         highestScore:0
     };
     $scope.clickAction=function(){
-        $scope.num=textService.textFunc($scope.x);
+        $scope.num=nestService1.getNum($scope.x);
+        //$scope.num=textService.textFunc($scope.x);
         requestNewActivitySV.userList('xx')
             .success(function(data,status){
                 console.log(data);
