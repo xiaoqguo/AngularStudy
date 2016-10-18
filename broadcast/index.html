@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="mydirective-app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name = "format-detection" content = "telephone=no">
+    <link href="../ionic-v1/css/ionic.min.css"  type="text/css" rel="stylesheet"/>
+    <script src="../ionic-v1/js/ionic.bundle.min.js"  charset="utf-8"></script>
+    <script src="../framework/1.3.0.14/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+    <title></title>
+</head>
+<body >
+<div ng-controller="parentCtr">
+    <div ng-controller="childCtr1">name :
+        <input ng-model="name" type="text" ng-change="change(name);" /><div nc-click="click()">aaaa</div>
+    </div>
+    <div ng-controller="childCtr2">Ctr1 name:
+        <input ng-model="ctr1Name" />
+    </div>
+</div></body>
+<script>
+
+</script>
+</html>

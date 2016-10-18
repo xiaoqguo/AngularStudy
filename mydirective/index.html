@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="../ionic-v1/css/ionic.min.css"  type="text/css" rel="stylesheet"/>
+    <script src="../ionic-v1/js/ionic.bundle.min.js"  charset="utf-8"></script>
+    <script src="../framework/1.3.0.14/angular.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+    <!--<script src="directive.js"></script>-->
+    <script src="app.js"></script>
+    <script src="GAlphaBGDirective.js" charset="utf-8"></script>
+    <title></title>
+</head>
+<body ng-controller="myCtr">
+<div style="background-color: orangered;position:absolute;width:100px;height:100px;display:block;" ng-click="clickAction()" >{{name}}</div>
+<hello ani-time-length="aniTimeLength" show-bg="cshowBg" show-bg-ani-func="cshowBgAniFunc" hide-bg-ani-func="chideBgAniFunc" bg-opacity="opacity" bg-color="color" dname="name">
+    <div style="width:100px;height:100px;display:block;background-color: orangered"></div>
+</hello>
+</body>
+</html>

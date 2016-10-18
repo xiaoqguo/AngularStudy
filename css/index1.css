@@ -1,0 +1,12 @@
+.error {
+    background-color: red;
+}
+.warning {
+    background-color: yellow;
+}
+.selected{
+    background-color: #4b8bf4;
+}
+.normal{
+    background-color: coral;
+}

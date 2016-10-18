@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="directiveTest">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../framework/1.3.0.14/angular.js"></script>
+    <script src="../framework/1.3.0.14/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/controllers.js"></script>
+    <title></title>
+</head>
+<body>
+<h2>directive基础用法-----------------</h2>
+<hello1><div>这里被替换掉了，用户无法看到</div></hello1>
+<hello3><div>transclude 为true </div></hello3>
+<hello2></hello2>
+<h2>directive与controller之间交互11111-----------------</h2>
+<div ng-controller="MyCtrl1">
+<loader1>鼠标滑动过来</loader1>
+    <div ng-show="loading">loadding</div>
+</div>
+<h2>directive与controller之间交互22222-----------------</h2>
+<div ng-controller="MyCtrl2">
+<loader2 howToLoad="loadData1()">鼠标滑动过来</loader2>
+    <div ng-show="loading">loadding</div>
+</div>
+<div ng-controller="MyCtrl3">
+    <loader2 howToLoad="loadData2()">鼠标滑动过来</loader2>
+    <div ng-show="loading">loadding</div>
+</div>
+<h2>directive内的独立scope</h2>
+<h3>错误的示范</h3>
+<hello4></hello4>
+<hello4></hello4>
+<hello4></hello4>
+<h3>@绑定字符串</h3>
+<span>通过@符号传递的只是字符串的值，通过标签的flavor属性，将directive中的flavor与controller中的flavor关联。而在return方法中，将directive中的flavor与独立scope中的flavor关联。这里显示的其实是独立scope中的值</span>
+<div ng-controller="MyCtrl4"><br>
+    <hello5 flavor="{{ctrlFlavor}}"></hello5>
+</div>
+<h3>=双向绑定</h3>
+<span>第二个输入框是directive里的输入框。</span>
+<div ng-controller="MyCtrl5">
+    Ctrl:<br>
+    <input type="text" ng-model="ctrlFlavor"/><br>
+    Directive:<br>
+    <hello6 flavor="ctrlFlavor"></hello6>
+</div>
+<h3>&绑定一个父scope的方法，稍后调用</h3>
+<span>实现了一个directve代码在不同controller中调用方法的功能。directive并未发生改变，两个controller都能良好运行</span>>
+
+<div ng-controller="MyCtrl6">
+    <span>controller1</span><br>
+<greeting greet="sayHello(name)"></greeting>
+</div>
+<div ng-controller="MyCtrl7">
+    <span>controller2</span><br>
+    <greeting greet="sayHello(name)"></greeting>
+    </div>
+</body>
+</html>

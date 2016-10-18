@@ -1,0 +1,113 @@
+<html ng-app="ionicApp">
+<head>
+    <title>Your Shopping Cart</title>
+    <link href="css/index1.css"  type="text/css" rel="stylesheet"/>
+    <link href="ionic-v1/css/ionic.min.css"  type="text/css" rel="stylesheet"/>
+    <script src="ionic-v1/js/ionic.bundle.min.js"  charset="utf-8"></script>
+</head>
+<body ng-controller="ionicApp">
+<h1>Your Order</h1>
+<div ng-repeat="item in items">
+    <span ng-bind="$index+' '+item.title"></span>
+    <input ng-model="item.quantity" ng-change="quantityOnChange(item.quantity)"/>
+    <span>{{item.price | currency}}</span>
+    <span ng-bind="item.price * item.quantity | currency"></span>
+    <button ng-click="remove($index)">Remove</button>
+</div>
+<span>total:{{bill.cartTotal|currency}}</span></br>
+<span>discount:{{bill.discount|currency}}</span></br>
+<span>subtotal:{{bill.subTotal|currency}}</span>
+<form>
+    <input type="checkbox" ng-model="funding.needed" ng-change="chekBoxkChange()">
+</form>
+<form ng-submit="requestFunding()" ng-show="funding.needed">
+    Starting: <input ng-change="computeNeeded()" ng-model="funding.startingEstimate"> Recommendation: {{funding.needed}}
+    <button type="button" ng-click="reset()">Reset</button>
+    <button ng-click="reset()">Fun my startup</button>
+</form>
+<div ng-class="{error: isError, warning:isWarning}">{{messageText}}</div>
+<button ng-click="showError()">Simulate Error</button>
+<button ng-click="showWarning()">Simulate Warning</button>
+<p>this is a text field</p>
+<table>
+    <tr ng-repeat="restaurant in directory" ng-click="selectRestaurant($index)" ng-class="{selected: $index==selectedRow,normal:$index!=selectedRow}">
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.cuisine}}</td>
+    </tr>
+</table>
+<br/>
+<table>
+    <tr ng-repeat="restaurant in directory" ng-click="selectedRow=0" ng-class="{normal: $index%2==0,selected:$index%2!=0}">
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.cuisine}}</td>
+    </tr>
+</table>
+<script>
+    angular.module('ionicApp', ['ionic'])
+            .controller( 'ionicApp',['$scope',function($scope){
+                //第一章 示例1 购物车
+                $scope.youCheckedIt=true;
+                $scope.isError = false;
+                $scope.isWarning = false;
+                $scope.totalPrice=0;
+                $scope.bill={};
+                $scope.items = [
+                    {title: 'Paint pots', quantity: 8, price: 3.95},
+                    {title: 'Polka dots', quantity: 17, price: 12.95},
+                    {title: 'Pebbles', quantity: 5, price: 6.95}
+                ];
+                $scope.directory = [{name: 'The Handsome Heifer', cuisine: 'BBQ'},
+                    {name: 'Green\'s Green Greens', cuisine:
+                            'Salads'},
+                    {name: 'House of Fine Fish', cuisine: 'Seafood'},
+                    {name: 'The Handsome Heifer', cuisine: 'BBQ'},
+                    {name: 'The Handsome Heifer', cuisine: 'BBQ'}
+                ];
+                $scope.quantityOnChange=function(quantity){
+//                    alert(quantity);
+                }
+                $scope.chekBoxkChange=function(){
+                    alert($scope.youCheckedIt);
+                }
+                $scope.remove = function(index){
+                    $scope.items.splice(index, 1);
+                }
+                $scope.computeNeeded = function(){
+                    $scope.funding.needed = $scope.funding.startingEstimate * 10; };
+                $scope.requestFunding = function(){
+                    window.alert("Sorry, please get more customers first.");
+                };
+                $scope.reset = function(){
+                    $scope.funding.startingEstimate = 0;
+                }
+                $scope.showError = function(){
+                    $scope.messageText = 'This is an error';
+                    $scope.isError = true;
+                    $scope.isWarning = false;
+                };
+                $scope.showWarning = function(){
+                    $scope.messageText = 'Just a warning. Please carry on'; $scope.isWarning = true;
+                    $scope.isError = false;
+                };
+                $scope.selectRestaurant=function(row){
+                    $scope.selectedRow=row;
+                }
+                $scope.$watch("items",itemsChagedAction,true);
+                function itemsChagedAction(){
+                    alert("watch");
+                    $scope.totalPrice=0;
+                   for(x in $scope.items){
+                       var item=$scope.items[x];
+                       $scope.totalPrice+=item.quantity*item.price;
+                   }
+                    $scope.bill.cartTotal=$scope.totalPrice;
+                    $scope.bill.discount=$scope.totalPrice>200 ? 10:0;
+                    $scope.bill.subTotal=$scope.totalPrice-$scope.bill.discount;
+                }
+
+
+                // 第一章 示例1 购物车
+            }]);
+</script>
+</body>
+</html>

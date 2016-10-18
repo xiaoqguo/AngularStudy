@@ -1,0 +1,41 @@
+/**
+ * Created by ldjt on 16/10/16.
+ */
+app.directive('hello',function(){
+    return{
+        restrict:'AE'
+        ,transclude:true
+        ,templateUrl:'tpls/AlphaBGDirective.html'
+        ,scope:{
+            dname:'='
+            ,bgOpacity:'='
+            ,bgColor:'='
+            ,aniTimeLength:'='
+            ,showBgAniFunc:'='
+            ,hideBgAniFunc:'='
+            ,showBg:'='
+        }
+        ,
+        controller:function($scope,$timeout){
+            $scope.dname+=' |directive xxx controller|';
+            $scope.bgColor='rgb(0,0,0)';
+            $scope.bgOpacity='0.0';
+            $scope.aniTimeLength=400;
+            $scope.showBg=false;
+            $scope.showBgAniFunc=function(){
+                $scope.showBg=true;
+                $scope.showBg=true;
+                $timeout(function(){
+                    $scope.bgOpacity='0.7';
+                },100);
+            }
+            $scope.hideBgAniFunc=function(){
+                $scope.bgOpacity='0';
+                $timeout(function(){
+                    $scope.showBg=false;
+                },$scope.aniTimeLength);
+            }
+            //alert($scope.showBgAniFunc);
+        }
+    }
+})

@@ -1,0 +1,40 @@
+/**
+ * Created by guozhengmao on 16/10/3.
+ */
+app.controller('MyCtrl1',['$scope',function($scope){
+    $scope.loading=false;
+    $scope.loadData=function(){
+        $scope.loading=true;
+        console.log("loading");
+    }
+}]);
+app.controller('MyCtrl2',['$scope',function($scope){
+    $scope.loading=false;
+    $scope.loadData1=function(){
+        $scope.loading=true;
+        console.log("loading");
+    }
+}]);
+app.controller('MyCtrl3',['$scope',function($scope){
+    $scope.loading=false;
+    $scope.loadData2=function(){
+        $scope.loading=true;
+        console.log("loading");
+    }
+}]);
+app.controller('MyCtrl4',['$scope',function($scope){
+    $scope.ctrlFlavor="百威";
+}]);
+app.controller("MyCtrl5",['$scope',function($scope){
+    $scope.ctrlFlavor="可口可乐";
+}]);
+app.controller("MyCtrl6",['$scope',function($scope){
+    $scope.sayHello=function(name){
+        alert("hello  "+name);
+    }
+}]);
+app.controller("MyCtrl7",['$scope',function($scope){
+    $scope.sayHello=function(name){
+        alert("WTF _+"+name);
+    }
+}])

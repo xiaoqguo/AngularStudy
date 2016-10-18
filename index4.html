@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="ionic-v1/js/ionic.bundle.min.js"  charset="utf-8"></script>
+    <title></title>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h1 ng-bind="title|titleCase"></h1>
+    <form name="addUserForm">
+        <div><span ng-bind="fText|titleCase"></span><input ng-model="user.first" required></div>
+        <div><span ng-bind="lText|titleCase"></span><input ng-model="user.last" required></div>
+        <div><span ng-bind="eText|titleCase"></span><input ng-model="user.email" required></div>
+        <div><span ng-bind="aText|titleCase"></span><input ng-model="user.age" required ng-maxlength='3' ng-minlength="1"></div>
+        <div><button ng-disabled="!addUserForm.$valid" ng-click="addUser()" ng-bind="sButton|titleCase"></button></div>
+    </form>
+</div>
+</body>
+<script>
+    var myApp=angular.module("myApp",[]);
+    myApp.controller("myCtrl",myController);
+    function myController($scope){
+        $scope.title="sign up";
+        $scope.fText="first name:";
+        $scope.lText="last name";
+        $scope.eText="email:";
+        $scope.aText="age:";
+        $scope.sButton="submit";
+
+        $scope.addUser=function(){
+
+        }
+    }
+    myApp.filter("titleCase",function(){
+        var titleCaseFilter=function(input){
+            var words = input.split(" ");
+            for(var i=0;i<words.length;i++){
+                words[i]=words[i].charAt(0).toUpperCase()+words[i].slice(1);
+            }
+            return words.join(' ');
+        };
+        return titleCaseFilter;
+    })
+</script>
+</html>

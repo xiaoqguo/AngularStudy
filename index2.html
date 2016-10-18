@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="ionic-v1/js/ionic.bundle.min.js"  charset="utf-8"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <h1>{{carname}}</h1>
+    <p>控制器中创建一个属性名 "carname"，对应了视图中使用 {{ }} 中的名称。</p>
+    <table>
+        <tr ng-repeat="item in items">
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.price|currency}}</td>
+        </tr>
+    </table>
+    <h1>{{pageHeading | titleCase}}</h1>
+</br>
+    <button ng-click="clickUnfocused()">
+        Not focused
+    </button>
+    <button ngbk-focus ng-click="clickFocused()">
+        I'm very focused!
+    </button>
+    <div>{{message.text}}</div>
+</div>
+<!--<div ng-app="ShoppingModule" ng-controller="ShoppingController">-->
+    <!--<h1>Shop!</h1>-->
+    <!--<table>-->
+        <!--<tr ng-repeat="item in items">-->
+            <!--<td>{{item.title}}</td>-->
+            <!--<td>{{item.description}}</td>-->
+            <!--<td>{{item.price|currency}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', ctrlFunction)
+
+    function ctrlFunction($scope){
+        $scope.carname = "Volvo";
+        $scope.pageHeading = 'behold the majesty of you page title';
+
+        $scope.items=[
+            {title:"Paint pots",description:"Pots full of paint",price:3.95},
+            {title:"Polka dots",description:"Dots with polka",price:2.95},
+            {title:"Pebbles",description:"Just little rocks",price:4.35}
+        ];
+    }
+    app.filter("titleCase",function(){
+        var titleCaseFilter=function(input){
+            var words = input.split(" ");
+            for(var i=0;i<words.length;i++){
+                words[i]=words[i].charAt(0).toUpperCase()+words[i].slice(1);
+            }
+            return words.join(' ');
+        };
+        return titleCaseFilter;
+    })
+    app.directive("ngbkFocus",function(){
+        return{
+            link:function(scope,elements,attrs,controller){
+                elements[0].focus();
+            }
+        }
+    });
+//    function SomeController($scope) {
+//        $scope.message = { text: 'nothing clicked yet' };
+//        $scope.clickUnfocused = function() {
+//            alert("aaaa");
+//            $scope.message.text = 'unfocused button clicked';
+//        };
+//        $scope.clickFocused = function (){
+//            alert("bbbb");
+//            $scope.message.text = 'focus button clicked';
+//        }
+//
+//    }
+//    var appModule = angular.module('myApp', ['directives']);
+
+//    var shoppingModule=angular.module("ShoppingModule",[]);
+//    shoppingModule.controller("ShoppingController",function($scope){
+//        alert("ShoppingController");
+//        $scope.items=[
+//            {title:"Paint pots",description:"Pots full of paint",price:3.95},
+//            {title:"Polka dots",description:"Dots with polka",price:2.95},
+//            {title:"Pebbles",description:"Just little rocks",price:4.35}
+//        ];
+//    });
+//    shoppingModule.factory("Items",function(){
+//        var items={};
+//        items.query=function(){
+//            return [
+//                {title:"Paint pots",description:"Pots full of paint",price:3.95},
+//                {title:"Polka dots",description:"Dots with polka",price:2.95},
+//                {title:"Pebbles",description:"Just little rocks",price:4.35}
+//            ];
+//        };
+//        return items;
+//    })
+</script>
+
+
+</body>
+</html>
