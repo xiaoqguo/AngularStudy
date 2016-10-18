@@ -1,7 +1,7 @@
 /**
  * Created by ldjt on 16/10/16.
  */
-app.directive('hello',function(){
+app.directive('gAlphaBgDir',function(){
     return{
         restrict:'AE'
         ,transclude:true

@@ -12,9 +12,16 @@
     <title></title>
 </head>
 <body ng-controller="myCtr">
-<div style="background-color: orangered;position:absolute;width:100px;height:100px;display:block;" ng-click="clickAction()" >{{name}}</div>
-<hello ani-time-length="aniTimeLength" show-bg="cshowBg" show-bg-ani-func="cshowBgAniFunc" hide-bg-ani-func="chideBgAniFunc" bg-opacity="opacity" bg-color="color" dname="name">
-    <div style="width:100px;height:100px;display:block;background-color: orangered"></div>
-</hello>
+<div style="position: absolute">
+    <div style="background-color: orangered;width:100px;height:100px;display:block;" ng-click="clickAction()" >{{name}}</div>
+    <div style="background-color: cadetblue;width:100px;height:100px;display:block;" ng-click="ashowBgAniFunc()" >{{name}}</div>
+</div>
+
+<g-alpha-bg-dir ani-time-length="aniTimeLength" show-bg="cshowBg" show-bg-ani-func="cshowBgAniFunc" hide-bg-ani-func="chideBgAniFunc" bg-opacity="opacity" bg-color="color" dname="name">
+    <div ng-click="click2Action()" style="float:right;width:100px;height:100px;display:block;background-color: orangered">xxx</div>
+</g-alpha-bg-dir>
+<g-alpha-bg-dir ani-time-length="aaniTimeLength" show-bg="ashowBg" show-bg-ani-func="ashowBgAniFunc" hide-bg-ani-func="ahideBgAniFunc" bg-opacity="aopacity" bg-color="acolor">
+    <div ng-click="ahideBgAniFunc()" style="float:right;width:100px;height:100px;display:block;background-color: cadetblue">yyyyyyy</div>
+</g-alpha-bg-dir>
 </body>
 </html>

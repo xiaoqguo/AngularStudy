@@ -5,6 +5,8 @@ var app=angular.module('myApp',[]);
 app.controller('myCtr',function($scope){
     $scope.clickAction=function(){
         $scope.cshowBgAniFunc();
-
+    }
+    $scope.click2Action=function(){
+        $scope.chideBgAniFunc();
     }
 })
