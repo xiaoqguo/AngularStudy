@@ -8,9 +8,6 @@ app.directive('gWebImageDir',function(){
         scope:{
             imgPath:'='
         },
-        controller:function(){
-
-        },
         templateUrl:'tpls/GwebImageDir.html'
     }
 });
