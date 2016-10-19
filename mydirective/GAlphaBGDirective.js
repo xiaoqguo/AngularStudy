@@ -7,8 +7,7 @@ app.directive('gAlphaBgDir',function(){
         ,transclude:true
         ,templateUrl:'tpls/AlphaBGDirective.html'
         ,scope:{
-            dname:'='
-            ,bgOpacity:'='
+            bgOpacity:'='
             ,bgColor:'='
             ,aniTimeLength:'='
             ,showBgAniFunc:'='
@@ -17,13 +16,11 @@ app.directive('gAlphaBgDir',function(){
         }
         ,
         controller:function($scope,$timeout){
-            $scope.dname+=' |directive xxx controller|';
             $scope.bgColor='rgb(0,0,0)';
             $scope.bgOpacity='0.0';
             $scope.aniTimeLength=400;
             $scope.showBg=false;
             $scope.showBgAniFunc=function(){
-                $scope.showBg=true;
                 $scope.showBg=true;
                 $timeout(function(){
                     $scope.bgOpacity='0.7';
