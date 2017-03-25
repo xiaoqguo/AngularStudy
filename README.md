@@ -6,3 +6,5 @@
 * velocity 用于实现大部分动画, 性能远优于 jQuery Animation
 * React 目前项目处于 Demo 状态,暂不需要
 * React-Redux 暂时不考虑使用这么重的前端架构,但数据若有需要,可以随时改用 Redux
+* 我的自定义文件
+* 详细信息
